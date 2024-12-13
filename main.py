@@ -4,9 +4,19 @@ import tensorflow as tf
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 import joblib
+from fastapi.middleware.cors import CORSMiddleware
 
 # Initialize the FastAPI app
 app = FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins for now; restrict in production
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods, including OPTIONS
+    allow_headers=["*"],  # Allow all headers
+)
 
 # Load your TensorFlow model
 # model = tf.keras.models.load_model('saved_model/yarn_model.h5')
